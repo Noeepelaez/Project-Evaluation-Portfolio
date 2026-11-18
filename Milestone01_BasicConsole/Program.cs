@@ -49,7 +49,6 @@ internal static class Program
 
     static void ShowMenu()
     {
-        // Total spent in the current month, shown at the top of the menu
         decimal monthTotal = 0;
         foreach (var expense in expenses)
         {
@@ -118,7 +117,6 @@ internal static class Program
         Console.WriteLine(new string('-', 60));
 
         decimal total = 0;
-        // Sort by the real date: as text, "18-10-2026" would come after "05-11-2026"
         foreach (var expense in list.OrderBy(e => GetDate(e)))
         {
             decimal amount = GetAmount(expense);
@@ -186,7 +184,6 @@ internal static class Program
         DateTime selected = ReadMonth("Month (MM-yyyy, empty = current month): ");
         string month = selected.ToString(MonthFormat, CultureInfo.InvariantCulture);
 
-        // Compare year and month as numbers instead of comparing text
         var monthExpenses = new List<Dictionary<string, string>>();
         foreach (var expense in expenses)
         {
@@ -343,7 +340,6 @@ internal static class Program
         return decimal.Parse(expense["Amount"], CultureInfo.InvariantCulture);
     }
 
-    // Converts the stored text ("18-11-2026") into a real DateTime
     static DateTime GetDate(Dictionary<string, string> expense)
     {
         if (DateTime.TryParseExact(expense["Date"], DateFormat, CultureInfo.InvariantCulture,
@@ -351,7 +347,7 @@ internal static class Program
         {
             return date;
         }
-        return DateTime.MinValue; // invalid date in the file
+        return DateTime.MinValue;
     }
 
     static void LoadExpenses()
