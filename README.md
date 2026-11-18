@@ -9,7 +9,7 @@ The same project is improved step by step during the semester. Each folder is
 one milestone and can be run on its own.
 
 - Milestone01_BasicConsole - basic console application
-- Milestone02_OOP - classes and objects (coming)
+- Milestone02_OOP - classes and objects
 - Milestone03_LayeredConsole - layers and users (coming)
 - Milestone04_Database - relational database (coming)
 - Milestone05_WebAPI - ASP.NET Core Web API (coming)
@@ -61,3 +61,51 @@ in one file. Milestone 02 fixes this by using classes.
 cd Milestone01_BasicConsole
 dotnet run
 ```
+
+
+## Milestone 02 - OOP and Persistence
+
+### What changed from Milestone 01
+
+The program does the same things, but the code is organised in classes instead
+of one file with dictionaries. A new option was added: 4) Edit expense.
+
+- Models/Category.cs - an enum with the categories. Before it was a string[],
+  so any text could be saved as a category.
+- Models/Expense.cs - the Expense class. Each field has its real type
+  (int, string, decimal, Category, DateTime) instead of being a string.
+- ExpenseManager.cs - keeps the list of expenses and has the operations:
+  add, search, edit, delete and monthly totals.
+- ExpenseFileStorage.cs - loads and saves the list in expenses.json.
+- Program.cs - only the menu and reading input from the user.
+
+### Concepts used
+
+- Classes and objects: Expense, ExpenseManager, ExpenseFileStorage
+- Properties: Id, Description, Amount, Category, Date
+- Constructors: an Expense can only be created with valid data, and
+  ExpenseManager receives the storage it uses
+- Encapsulation: the fields are private and the setters are private.
+  The setters check the data (empty description or amount <= 0 throws an
+  error). The only way to change an expense is the Update method, and the
+  list of expenses inside ExpenseManager is private.
+- Enum for the categories
+- JSON persistence with System.Text.Json, saving the categories as text
+  ("Food") and using the Expense constructor when loading
+
+### Limitations
+
+There is only one user and anyone who runs the program sees all the expenses.
+The classes still depend directly on each other (ExpenseManager creates and
+saves through ExpenseFileStorage) and the input validation is in Program.cs.
+Milestone 03 separates the code into layers and adds users.
+
+### How to run
+
+```
+cd Milestone02_OOP
+dotnet run
+```
+
+The expenses.json of this milestone has a different format from Milestone 01
+(real numbers and dates instead of text), so each milestone has its own file.
