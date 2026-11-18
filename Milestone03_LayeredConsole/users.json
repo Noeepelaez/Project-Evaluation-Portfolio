@@ -1,0 +1,14 @@
+[
+  {
+    "Id": 1,
+    "Username": "noe",
+    "PasswordHash": "JoYTvvYDJd09KpkYYGKCjnh/PYyxS2hGlXnnhS\u002BXUXs=",
+    "PasswordSalt": "7vazNvF313\u002BHTHX89w9p9Q=="
+  },
+  {
+    "Id": 2,
+    "Username": "nacho",
+    "PasswordHash": "3ZvH68f\u002B76Mlz2f7gCkroK97krNPZc6uiWb2b0hAiOk=",
+    "PasswordSalt": "nT620UIap/7msdIOq1MpIA=="
+  }
+]

@@ -10,7 +10,7 @@ one milestone and can be run on its own.
 
 - Milestone01_BasicConsole - basic console application
 - Milestone02_OOP - classes and objects
-- Milestone03_LayeredConsole - layers and users (coming)
+- Milestone03_LayeredConsole - layers and users
 - Milestone04_Database - relational database (coming)
 - Milestone05_WebAPI - ASP.NET Core Web API (coming)
 
@@ -109,3 +109,62 @@ dotnet run
 
 The expenses.json of this milestone has a different format from Milestone 01
 (real numbers and dates instead of text), so each milestone has its own file.
+
+
+## Milestone 03 - Layered Multi-user Console Application
+
+### What changed from Milestone 02
+
+The application now has users. Each user registers, logs in and only sees
+and changes their own expenses. The code is split into layers, each one in
+its own folder:
+
+- Presentation - ConsoleUI (menus) and ConsoleInput (reading input).
+  It only talks to the services.
+- Services - AuthService (register, login, logout, current user),
+  ExpenseService (operations on the expenses of the current user),
+  PasswordHasher and ValidationException. All the validation rules are here.
+- Repositories - IUserRepository and IExpenseRepository (interfaces) and
+  their JSON implementations. They only load and save data.
+- Models - User, Expense and Category. Simple classes with only data.
+
+Program.cs creates the repositories, the services and the UI and connects them.
+
+### Users
+
+- Register: username and password (asked twice). The password is shown as ***.
+- Login: the logged user becomes the current user (AuthService.CurrentUser).
+- Logout: option 7 in the main menu. The app goes back to the login menu.
+- Passwords are not saved in plain text. They are saved as a hash with a salt
+  (PBKDF2 with SHA-256).
+- Each expense has a UserId. ExpenseService always filters by the current
+  user, so a user cannot see, edit or delete the expenses of another user,
+  even if they type the id of that expense.
+
+### Validation rules
+
+- Username: 3 to 20 characters, only letters, numbers and _, and not taken
+- Password: at least 6 characters and at least one number
+- Description: not empty, maximum 100 characters
+- Amount: greater than 0 and maximum 10000
+- Date: cannot be in the future
+
+If a rule is broken the service throws a ValidationException and the
+presentation layer shows the message.
+
+### Why the changes
+
+In Milestone 02 the validation was inside the Expense class and ExpenseManager
+saved directly to the file. Now each layer has one job. The services do not
+know how data is saved because they use the repository interfaces, so in
+Milestone 04 the JSON repositories can be replaced by database repositories
+without changing the services or the UI.
+
+### How to run
+
+```
+cd Milestone03_LayeredConsole
+dotnet run
+```
+
+Data is saved in users.json and expenses.json in this folder.

@@ -52,7 +52,7 @@ public class Expense
         Description = description;
         Amount = amount;
         Category = category;
-        Date = date.Date;
+        Date = DateTime.SpecifyKind(date.Date, DateTimeKind.Unspecified);
     }
 
     public void Update(string description, decimal amount, Category category, DateTime date)
@@ -60,7 +60,7 @@ public class Expense
         Description = description;
         Amount = amount;
         Category = category;
-        Date = date.Date;
+        Date = DateTime.SpecifyKind(date.Date, DateTimeKind.Unspecified);
     }
 
     public bool Matches(string text)

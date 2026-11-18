@@ -1,0 +1,18 @@
+[
+  {
+    "Id": 1,
+    "UserId": 1,
+    "Description": "caracolas",
+    "Amount": 60,
+    "Category": "Food",
+    "Date": "2026-11-18T00:00:00"
+  },
+  {
+    "Id": 2,
+    "UserId": 2,
+    "Description": "pistachos",
+    "Amount": 4354,
+    "Category": "Leisure",
+    "Date": "2026-11-18T00:00:00"
+  }
+]
