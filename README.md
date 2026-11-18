@@ -1,71 +1,63 @@
-# Erasmus Expense Tracker
+# Expense Tracker
 
 ## Project idea
 
-As an Erasmus student I need to keep track of what I spend every month (rent, food,
-transport, trips...). **Erasmus Expense Tracker** is an application to record personal
-expenses, search them and see a monthly summary per category.
+An application to record personal expenses during my Erasmus and see how much
+I spend each month and on what.
 
-The same idea is developed step by step during the semester. Each folder is a
-runnable milestone that shows how the application evolved as new backend and database
-concepts were learned.
+The same project is improved step by step during the semester. Each folder is
+one milestone and can be run on its own.
 
-| Folder | Milestone | Status |
-|---|---|---|
-| `Milestone01_BasicConsole` | Basic console application | ✅ Done |
-| `Milestone02_OOP` | OOP and persistence | ⏳ |
-| `Milestone03_LayeredConsole` | Layered multi-user console app | ⏳ |
-| `Milestone04_Database` | Relational database (SQLite + Dapper) | ⏳ |
-| `Milestone05_WebAPI` | ASP.NET Core Web API | ⏳ |
+- Milestone01_BasicConsole - basic console application
+- Milestone02_OOP - classes and objects (coming)
+- Milestone03_LayeredConsole - layers and users (coming)
+- Milestone04_Database - relational database (coming)
+- Milestone05_WebAPI - ASP.NET Core Web API (coming)
 
 ## Requirements
 
-- [.NET SDK 8](https://dotnet.microsoft.com/download) or newer
-- Visual Studio Code with the **C# Dev Kit** extension (or Visual Studio)
+- .NET SDK 8 or newer
+- Visual Studio Code with the C# Dev Kit extension, or Visual Studio
 
----
 
-## Milestone 01 – Basic Console Application
+## Milestone 01 - Basic Console Application
 
-### What it demonstrates
+### What it does
 
-A single-file console application (`Program.cs`) with a text menu:
+A console menu with these options:
 
-1. Add expense (description, amount, category, date)
-2. List all expenses (sorted by date, with total)
-3. Find expenses by text (description or category)
-4. Delete an expense by id (with confirmation)
-5. Monthly summary: total per category, percentage and a small bar chart
+1. Add an expense (description, amount, category and date)
+2. List all expenses, sorted by date, with the total
+3. Find expenses by text in the description or category
+4. Delete an expense by its id
+5. Monthly summary: total per category for a month
 0. Exit
+
+The menu also shows how much has been spent in the current month.
+
+Dates are written as dd-MM-yyyy (18-11-2026) and months as MM-yyyy (11-2026).
+Categories: Food, Rent, Transport, Travel, Leisure, Studies, Sport, Other.
 
 ### Concepts used
 
-| Concept | Where |
-|---|---|
-| Variables and basic types | `string`, `int`, `decimal`, `bool`, `DateTime`, constants `DataFile`, `DateFormat` |
-| Conditions | `if/else`, `switch` in the menu, input validation |
-| Loops | `while` menu loop, `for` to find an id, `foreach` for totals and searches |
-| Methods | `AddExpense`, `ListExpenses`, `ReadAmount`, `ReadDate`, `ShowMonthlySummary`… |
-| Collections | `List<Dictionary<string, string>>` for expenses, `string[]` for categories |
-| Add / List / Find / Delete | Menu options 1–4 |
-| JSON persistence | `System.Text.Json` – data is loaded at start-up and saved after each change in `expenses.json` |
+- Variables and basic types: string, int, decimal, bool, DateTime
+- Conditions: if/else and switch
+- Loops: while, for and foreach
+- Methods: each menu option is its own method, plus helper methods to read input
+- Collections: List, Dictionary and arrays
+- JSON persistence: expenses are saved in expenses.json after every change and
+  loaded when the program starts
 
-### Design decision / limitations
+### Limitations
 
-In this first version an expense is just a `Dictionary<string, string>`
-(keys `Id`, `Date`, `Description`, `Category`, `Amount`). No custom classes are used yet.
-This works, but it has clear problems that motivate the next milestone:
-
-- everything is a `string`, so the amount must be parsed every time (`GetAmount`);
-- a typo in a key (`expense["Ammount"]`) compiles but crashes at runtime;
-- nothing protects the data: any code can put an invalid amount in the dictionary;
-- all logic (menu, rules, file access) is mixed in one file.
+Each expense is stored as a Dictionary<string, string>. Because of this,
+everything is text (the amount and the date must be converted every time),
+a typo in a key is only detected when the program runs, and all the code is
+in one file. Milestone 02 fixes this by using classes.
 
 ### How to run
 
-```bash
+```
 cd Milestone01_BasicConsole
 dotnet run
 ```
-
-The file `expenses.json` is created in the folder where the app is run.
