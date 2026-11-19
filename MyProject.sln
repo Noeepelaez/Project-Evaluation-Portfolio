@@ -9,6 +9,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Milestone02_OOP", "Mileston
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Milestone03_LayeredConsole", "Milestone03_LayeredConsole\Milestone03_LayeredConsole.csproj", "{3F1A2B11-0003-4C6E-9A01-000000000003}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Milestone04_Database", "Milestone04_Database\Milestone04_Database.csproj", "{3F1A2B11-0004-4C6E-9A01-000000000004}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -27,5 +29,9 @@ Global
 		{3F1A2B11-0003-4C6E-9A01-000000000003}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{3F1A2B11-0003-4C6E-9A01-000000000003}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{3F1A2B11-0003-4C6E-9A01-000000000003}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3F1A2B11-0004-4C6E-9A01-000000000004}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3F1A2B11-0004-4C6E-9A01-000000000004}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3F1A2B11-0004-4C6E-9A01-000000000004}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3F1A2B11-0004-4C6E-9A01-000000000004}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal
