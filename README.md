@@ -69,35 +69,3 @@ Relationships:
 
 SQL used: CREATE TABLE, PRIMARY KEY, FOREIGN KEY, UNIQUE, CHECK, INSERT,
 SELECT, UPDATE, DELETE, JOIN, WHERE, LIKE, SUM, COUNT, GROUP BY, ORDER BY.
-
-
-## Milestone 05 - Web API
-
-Changes:
-
-- ASP.NET Core Web API instead of the console menu
-- Same database and repositories as Milestone 04
-- DTOs for the requests and responses, validated with attributes
-- Login returns a JWT token, the expense endpoints need it
-- Each user only gets their own expenses (another user's expense gives 404)
-- Swagger to test the API
-
-Endpoints:
-
-- POST /api/auth/register - 201, 400, 409
-- POST /api/auth/login - 200, 400, 401
-- GET /api/auth/me - 200, 401
-- GET /api/categories - 200
-- GET /api/expenses - 200, 400 (optional: search, year, month)
-- GET /api/expenses/{id} - 200, 404
-- POST /api/expenses - 201, 400
-- PUT /api/expenses/{id} - 200, 400, 404
-- PATCH /api/expenses/{id} - 200, 400, 404
-- DELETE /api/expenses/{id} - 204, 404
-- GET /api/expenses/summary?year=2026&month=11 - 200, 400
-
-Without a valid token the expense endpoints return 401.
-Dates are sent and returned as dd-MM-yyyy, e.g. "19-11-2026".
-
-To test it: run it, open http://localhost:5080/swagger, register, login,
-copy the token, press Authorize and paste it.
